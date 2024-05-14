@@ -1,19 +1,26 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../assets/logo.png";
 
 export const Header = () => {
+  const [hidden, setHidden] = useState(true);
+  const activeClass =
+    "text-base block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white";
+  const inActiveClass =
+    "text-base block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700";
   return (
     <header>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <Link to="/" className="flex items-center">
             <img src={Logo} className="mr-3 h-6 sm:h-9" alt="Cinemate Logo" />
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Movies App
             </span>
           </Link>
           <div className="flex md:order-2">
             <button
+              onClick={() => setHidden(!hidden)}
               type="button"
               data-collapse-toggle="navbar-search"
               aria-controls="navbar-search"
@@ -57,9 +64,11 @@ export const Header = () => {
                 id="search-navbar"
                 className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search..."
+                autoComplete="off"
               />
             </div>
             <button
+              onClick={() => setHidden(!hidden)}
               data-collapse-toggle="navbar-search"
               type="button"
               className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -83,7 +92,9 @@ export const Header = () => {
             </button>
           </div>
           <div
-            className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
+            className={`${
+              hidden ? "hidden" : ""
+            } justify-between items-center w-full md:flex md:w-auto md:order-1`}
             id="navbar-search"
           >
             <div className="relative mt-3 md:hidden">
@@ -107,13 +118,16 @@ export const Header = () => {
                 id="search-navbar"
                 className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search..."
+                autoComplete="off"
               />
             </div>
             <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
                 <NavLink
                   to="/"
-                  className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                  className={({ isActive }) =>
+                    isActive ? activeClass : inActiveClass
+                  }
                   end
                 >
                   Home
@@ -122,7 +136,9 @@ export const Header = () => {
               <li>
                 <NavLink
                   to="/movies/popular"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className={({ isActive }) =>
+                    isActive ? activeClass : inActiveClass
+                  }
                 >
                   Popular
                 </NavLink>
@@ -130,7 +146,9 @@ export const Header = () => {
               <li>
                 <NavLink
                   to="/movies/top"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className={({ isActive }) =>
+                    isActive ? activeClass : inActiveClass
+                  }
                 >
                   Top Rated
                 </NavLink>
@@ -138,7 +156,9 @@ export const Header = () => {
               <li>
                 <NavLink
                   to="/movies/upcoming"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className={({ isActive }) =>
+                    isActive ? activeClass : inActiveClass
+                  }
                 >
                   Upcoming
                 </NavLink>

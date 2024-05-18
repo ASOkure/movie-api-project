@@ -26,6 +26,7 @@ export const Footer = () => {
           <a
             href="https://github.com/ASOkure"
             target="_blank"
+            rel="noreferrer"
             className="hover:underline"
           >
             Github

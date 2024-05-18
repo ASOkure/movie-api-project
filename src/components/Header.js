@@ -39,7 +39,7 @@ export const Header = () => {
           <Link to="/" className="flex items-center">
             <img src={Logo} className="mr-2 h-8 sm:h-9" alt="Cinemate Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Cinemate
+              Find Movies
             </span>
           </Link>
 
